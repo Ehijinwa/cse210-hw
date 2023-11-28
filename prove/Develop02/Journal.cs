@@ -1,13 +1,13 @@
 class Journal {
     List<string> _prompts;
-    List<Entry> _entries;
+    public List<Entry> Entries;
 
     // Constructor is automatically called whenever you create a new 
     // instance of this class (or a new Journal, in this case)
     public Journal() {
         // Create a new list
         _prompts = new List<string>();
-        _entries = new List<Entry>();
+        Entries = new List<Entry>();
         // Add 5 prompts to the list
         _prompts.Add("What did you do today?");
         _prompts.Add("What did you eat today?");
@@ -29,4 +29,23 @@ class Journal {
         // Return the random prompt
         return prompt;
     }
+    public string GetResponse()
+    {
+        return Console.ReadLine();
+    }
+
+    public void Display()
+    {
+        Console.Clear();
+        foreach(var entry in Entries)
+        {
+            entry.Display();
+        }
+        Console.WriteLine();
+    }
+    public void AddEntry(string prompt, string response){
+        Entry myEntry = new Entry(prompt, response);
+        Entries.Add(myEntry);
+    }
+
 }
