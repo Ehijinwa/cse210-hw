@@ -1,0 +1,3 @@
+TotalPoints,100
+SimpleGoal,simple,a simple goal,10
+EternalGoal,eternal,an eternal goal,10

@@ -1,27 +1,36 @@
 using System.Security.Cryptography.X509Certificates;
 
-public class Simple:Goal
+public class SimpleGoal : Goal
 {
-    public Simple()
-    {
-        // this._ischecked = _ischecked;
-    }
     public override void Display(int i)
     {
         if (_ischecked)
         {
-            Console.WriteLine("The goals are");
-            Console.WriteLine($"{i} [x] {_name} {_type}");
-            Console.WriteLine($"You have {_points}");
+            // This condition is for if the goal is complete, or checked
+            Console.WriteLine($"[x] {i}. {Name} ({Description})");
         }
         else 
         {
-            Console.WriteLine("The goals are");
-            Console.WriteLine($"{i} [x] {_name} {_type}");
+            // This conditino is for if the goal is incomplete, or unchecked
+            Console.WriteLine($"[ ] {i}. {Name} ({Description})");
         }
     }
+    public override int RecordEvent()
+    {
+        if (_ischecked)
+        {
+            return 0;
+        }
+        else
+        {
+            _ischecked = true;
+            return Points;
+        }
+    }
+
+
     public override string checkname()
     {
-        return $"{_name} {_type} {_points} {_ischecked}";
+        return $"{Name} {Points} {_ischecked}";
     }
 }

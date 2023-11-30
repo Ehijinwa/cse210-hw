@@ -1,9 +1,23 @@
-public class Goal{
+public abstract class Goal {
     protected bool _ischecked = false;
     protected string _name;
-    protected string _type;
+    public string Name
+    {
+        get {return _name;}
+        set {_name = value;}
+    }
     protected string _description;
+    public string Description
+    {
+        get {return _description;}
+        set {_description = value;}
+    }
     protected int _points;
+    public int Points
+    {
+        get {return _points;}
+        set {_points = value;}
+    }
     public Goal(){
 
     }
@@ -11,7 +25,7 @@ public class Goal{
     {
         if (_ischecked == false){
         _ischecked = true;
-        return _points;
+        return Points;
         }
         else {
             return 0;
@@ -23,18 +37,27 @@ public class Goal{
     }
     public virtual void Display(int i)
     {
-        Console.WriteLine($"{i}. {_name} ({_description})");
+        if (_ischecked)
+        {
+            Console.WriteLine($"[x] {i}. {Name} ({Description})");
+        }
+        else 
+        {
+            Console.WriteLine($"[ ] {i}. {Name} ({Description})");
+        }
     }
     public virtual void PromptUser()
     {
         // Ask the user for their name
         Console.Write("what is the name of your goal? ");
-        _name = Console.ReadLine();
+        Name = Console.ReadLine();
         // Ask the user for the description of the goal
         Console.Write("What is a short description of it? ");
-        _description = Console.ReadLine();
+        Description = Console.ReadLine();
         // Ask the user for points amount for this goal
         Console.Write("What is the amount of points associated with this goal? ");
-        _points = int.Parse(Console.ReadLine());
+        Points = int.Parse(Console.ReadLine());
     }
+
+    public abstract int RecordEvent();
 }
